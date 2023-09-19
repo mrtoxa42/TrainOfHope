@@ -6,6 +6,7 @@ var speed = 200
 var trainarea = false
 var playerarea = false
 var hp = 3
+var enemyarea = false
 onready var raycast = get_node("RayCast2D")
 func _process(delta):
 	if GameManager.player != null and trainarea == false:
@@ -23,7 +24,8 @@ func _on_DetectedArea_area_entered(area):
 		trainarea = true
 	if area.name == "PlayerArea":
 		if GameManager.currentenemy == null:
-			GameManager.currentenemy = self
+			GameManager.currentenemy = self	
+	
 
 func _on_DetectedArea_area_exited(area):
 	if area.is_in_group("Train"):
