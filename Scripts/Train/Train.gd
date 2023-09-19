@@ -1,16 +1,35 @@
 extends KinematicBody2D
 
+var speed = 50
+var velocity = Vector2(1,0)
+var playerarea = false
+var move = false
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GameManager.train = self
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if move == true:
+		move_and_slide(velocity * speed)
+
+
+func _on_Detected_area_entered(area):
+	if area.is_in_group("Player"):
+		playerarea = true
+		if move == false:
+			$StartStop.start()
+
+func _on_Detected_area_exited(area):
+	if area.is_in_group("Player"):
+		playerarea = false
+		if move == true:
+			$StartStop.start()
+		
+
+func _on_StartStop_timeout():
+	if playerarea == true:
+		move = true
+	else:
+		move = false
