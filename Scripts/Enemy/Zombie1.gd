@@ -5,19 +5,14 @@ var velocity = Vector2.ZERO
 var speed = 200
 var trainarea = false
 var playerarea = false
-var hp = 3
-var enemyarea = false
-onready var raycast = get_node("RayCast2D")
+var hp = 3  
 func _process(delta):
 	if GameManager.player != null and trainarea == false:
 		velocity  = Vector2(GameManager.train.global_position - global_position).normalized()
 		
 		move_and_slide(velocity * speed)
 
-	if raycast.is_colliding():
-		var obj = raycast.get_collider()
-		if obj.is_in_group("Enemy"):
-			pass
+
 
 func _on_DetectedArea_area_entered(area):
 	if  area.is_in_group("Train"):
