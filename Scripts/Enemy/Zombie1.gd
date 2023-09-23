@@ -23,12 +23,14 @@ func _process(delta):
 
 func _on_DetectedArea_area_entered(area):
 	if  area.is_in_group("Train"):
+		yield(get_tree().create_timer(1),"timeout")
 		trainarea = true
 		Attack()
 	if area.name == "PlayerArea":
 		if GameManager.currentenemy == null:
 			GameManager.currentenemy = self	
 		playerarea = true
+		Attack()
 	
 
 func _on_DetectedArea_area_exited(area):
@@ -39,12 +41,13 @@ func _on_DetectedArea_area_exited(area):
 			GameManager.currentenemy = null
 		playerarea = false
 func Attack():
-	$AnimationPlayer.play("Attack")
-	print("a")
-	if trainarea == true:
-		return
+	if global_position.x < GameManager.train.global_position.x:
+		$AnimationPlayer.play("AttackR")
 	else:
-		$AnimationPlayer.play("RunR")
+		$AnimationPlayer.play("AttackL")
+	if trainarea == true or playerarea == true:
+		return
+
 func take_damage():
 	if hp > 0:
 		hp -=1
