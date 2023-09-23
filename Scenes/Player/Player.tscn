@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Scenes/Player/GUI/Joystick.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=3]
-[ext_resource path="res://Assets/BasicCharacther.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Characther/BasicCharacther.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 31, 31.5 )
+extents = Vector2( 41.5, 96.75 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Run"
@@ -40,7 +40,7 @@ position = Vector2( 265, 0 )
 [node name="PlayerArea" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-position = Vector2( 33, -3 )
+position = Vector2( -6.5, 57.25 )
 shape = SubResource( 2 )
 
 [node name="Polygons" type="Node2D" parent="."]
@@ -196,7 +196,7 @@ rest = Transform2D( 0.721584, 0.692327, -0.692327, 0.721584, -1, 46 )
 default_length = 40.0
 
 [node name="FootR" type="Bone2D" parent="Skeleton2D/Hip"]
-position = Vector2( 20.894, 5.42579 )
+position = Vector2( 19.8942, 5.40547 )
 rest = Transform2D( 1, 0, 0, 1, 19.8942, 5.40547 )
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Hip/FootR"]

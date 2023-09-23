@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Enrivorment/TileMap/TrainTrack.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Train/Train.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemy/EnemySpawners/EnemySpawner1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Levels/Level1.gd" type="Script" id=5]
+
+[sub_resource type="TileSet" id=1]
+0/name = "TrainTrack.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 1, 0, 135, 84 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="TileMap" type="TileMap" parent="YSort"]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 124, 64 )
+format = 1
+tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 262160, 0, 0, 262161, 0, 0, 262162, 0, 0, 262163, 0, 0, 262164, 0, 0, 262165, 0, 0, 262166, 0, 0, 262167, 0, 0, 262168, 0, 0, 262169, 0, 0 )
+
+[node name="Spawners" type="Node2D" parent="YSort"]
+
+[node name="EnemySpawner1" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 52, 540 )
+
+[node name="EnemySpawner2" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 835, 527 )
+
+[node name="EnemySpawner3" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 1502, 540 )
+
+[node name="EnemySpawner4" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 2164, 550 )
+
+[node name="EnemySpawner5" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 2744, 560 )
+
+[node name="EnemySpawner6" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 3185, 544 )
+
+[node name="EnemySpawner7" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 3185, 544 )
+
+[node name="EnemySpawner8" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 52, 97 )
+
+[node name="EnemySpawner9" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 835, 84 )
+
+[node name="EnemySpawner10" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 1502, 97 )
+
+[node name="EnemySpawner11" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 2164, 107 )
+
+[node name="EnemySpawner12" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 2744, 117 )
+
+[node name="EnemySpawner13" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 3185, 101 )
+
+[node name="EnemySpawner14" parent="YSort/Spawners" instance=ExtResource( 3 )]
+position = Vector2( 3185, 101 )
+
+[node name="Train" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 236, 268 )
+
+[node name="Player" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 469, 115 )

@@ -9,9 +9,14 @@ size = 32
 font_data = ExtResource( 2 )
 
 [node name="LevelsMap" type="Node2D"]
+position = Vector2( 63, 73 )
 script = ExtResource( 3 )
 
 [node name="Level1" type="Node2D" parent="."]
+position = Vector2( -65, -128 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Level1Button" type="TouchScreenButton" parent="Level1"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -28,6 +33,9 @@ text = "1"
 
 [node name="Level2" type="Node2D" parent="."]
 position = Vector2( 216, 168 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Level2Button" type="TouchScreenButton" parent="Level2"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -43,23 +51,29 @@ custom_fonts/font = SubResource( 1 )
 text = "2"
 
 [node name="Level3" type="Node2D" parent="."]
-position = Vector2( 344, 8 )
+position = Vector2( 311, -129 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Level3Button" type="TouchScreenButton" parent="Level3"]
 self_modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 62, 140 )
+position = Vector2( 326, 327 )
 normal = ExtResource( 1 )
 
 [node name="Level1Label" type="Label" parent="Level3"]
-margin_left = 86.0
-margin_top = 146.0
-margin_right = 126.0
-margin_bottom = 189.0
+margin_left = 350.0
+margin_top = 333.0
+margin_right = 390.0
+margin_bottom = 376.0
 custom_fonts/font = SubResource( 1 )
 text = "3"
 
 [node name="Level4" type="Node2D" parent="."]
-position = Vector2( 496, 176 )
+position = Vector2( 760, 363 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Level4Button" type="TouchScreenButton" parent="Level4"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -75,7 +89,10 @@ custom_fonts/font = SubResource( 1 )
 text = "4"
 
 [node name="Level5" type="Node2D" parent="."]
-position = Vector2( 680, 288 )
+position = Vector2( 966, 295 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Level5Button" type="TouchScreenButton" parent="Level5"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -92,17 +109,20 @@ text = "5"
 
 [node name="Level6" type="Node2D" parent="."]
 position = Vector2( 780, 68 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Level6Button" type="TouchScreenButton" parent="Level6"]
 self_modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 62, 140 )
+position = Vector2( 348, 147 )
 normal = ExtResource( 1 )
 
 [node name="Level1Label" type="Label" parent="Level6"]
-margin_left = 86.0
-margin_top = 146.0
-margin_right = 126.0
-margin_bottom = 189.0
+margin_left = 372.0
+margin_top = 153.0
+margin_right = 412.0
+margin_bottom = 242.0
 custom_fonts/font = SubResource( 1 )
 text = "6
 "

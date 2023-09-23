@@ -17,3 +17,7 @@ var joystick
 # Oyun içi değişkenler
 var trainboundary
 var currentenemy
+
+
+
+

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Train.png-6a36603f36a1b7e93b807b584cc346f5.stex"
+path="res://.import/TrainTrack.png-62775f56c32033d125b63f30e3128d17.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Train.png"
-dest_files=[ "res://.import/Train.png-6a36603f36a1b7e93b807b584cc346f5.stex" ]
+source_file="res://Assets/Enrivorment/TileMap/TrainTrack.png"
+dest_files=[ "res://.import/TrainTrack.png-62775f56c32033d125b63f30e3128d17.stex" ]
 
 [params]
 
