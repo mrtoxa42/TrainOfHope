@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Train/Turrets/Turret1.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Train/TurretBody1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Train/TurretHead1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Train/TurretCroos1.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 500.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Detected"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 15.0333, 500.0 ]
+}
+
+[node name="Turret1" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -3, 0 )
+shape = SubResource( 1 )
+
+[node name="Body" type="Sprite" parent="."]
+position = Vector2( 0, 18 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -225 )
+
+[node name="Head" type="Sprite" parent="."]
+position = Vector2( 0, -44 )
+rotation = -0.0154204
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -150 )
+
+[node name="ShootPosition" type="Position2D" parent="Head"]
+position = Vector2( 402.265, -143.814 )
+rotation = 0.0154204
+scale = Vector2( 12.5, 12.5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Detected"
+anims/Detected = SubResource( 2 )
+
+[node name="CroosHair" type="Sprite" parent="."]
+position = Vector2( 28, -57 )
+scale = Vector2( 0.06, 0.06 )
+z_index = 1
+texture = ExtResource( 4 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_Turret1_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Turret1_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

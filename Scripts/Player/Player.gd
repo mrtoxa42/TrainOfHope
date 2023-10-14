@@ -3,16 +3,26 @@ extends KinematicBody2D
 
 var velocity = Vector2.ZERO
 var speed = 200
-
+var attacked = false
+var hp = 10
+var damaged = false
 func _ready():
 	GameManager.player = self
 	GameManager.trainboundary = $TrainBoundary.global_position
 func _process(delta):
 #	velocity = get_node("GUI/Joystick").get_velo()
-	move_and_slide(velocity * speed)
+	if attacked == false:
+		move_and_slide(velocity * speed)
 	GameManager.trainboundary = $TrainBoundary.global_position
-	
-	
+	if attacked == false:
+		if velocity == Vector2.ZERO:
+			$AnimationPlayer.play("Idle")
+		elif velocity.x ==1:
+			$AnimationPlayer.play("RunR")
+		elif velocity.x == -1:
+			$AnimationPlayer.play("RunL")
+		else:
+			$AnimationPlayer.play("RunR")
 func _input(event):
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = 1
@@ -32,8 +42,32 @@ func _input(event):
 		Attack()
 		
 func Attack():
-#	$AnimationPlayer.play("Attack")
+		attacked = true
+		$AnimationPlayer.play("Attack")
 
-	if GameManager.currentenemy != null:
-		print("Player attack")
-		GameManager.currentenemy.take_damage()
+#	if GameManager.currentenemy != null:
+#		GameManager.currentenemy.take_damage()
+
+func take_damage():
+	$AnimationPlayer2.play("TakeDamage")
+	damaged = true
+	hp -= 1
+	if hp >= 1:
+		pass
+	else:
+		Death()
+
+func Death():
+	GameManager.train.camera_on()
+	queue_free()
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Attack":
+		attacked = false
+
+
+
+func _on_AnimationPlayer2_animation_finished(anim_name):
+	if anim_name == "TakeDamage":
+		damaged = false

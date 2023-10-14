@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Train/TurretBullet1.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Train/Turrets/TurretBullet1.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.5, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20.5, 8 )
+
+[node name="TurretBullet1" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3.5, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 1 )
+offset = Vector2( 10, -3.8147e-06 )
+
+[node name="TurretBullet1" type="Area2D" parent="." groups=["Bullet", "Bullet1"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurretBullet1"]
+position = Vector2( -5.5, 0 )
+shape = SubResource( 2 )
+
+[node name="DetectedTimer" type="Timer" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="TurretBullet1" to="." method="_on_TurretBullet1_area_entered"]
+[connection signal="timeout" from="DetectedTimer" to="." method="_on_DetectedTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

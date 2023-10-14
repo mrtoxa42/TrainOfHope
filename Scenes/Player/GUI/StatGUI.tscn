@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Fonts/RussoOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/GUI/PlayerStat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/TrainStat.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Player/GUI/StatGUI.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+[node name="StatGUI" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="PlayerHpBar" type="ProgressBar" parent="."]
+margin_left = 949.0
+margin_top = 7.0
+margin_right = 1022.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 1 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 50.0
+
+[node name="TrainHpBar" type="ProgressBar" parent="."]
+margin_left = 949.0
+margin_top = 52.0
+margin_right = 1022.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 4 )
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+value = 50.0
+
+[node name="PlayerStat" type="Sprite" parent="."]
+position = Vector2( 926, 18 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 2 )
+
+[node name="TrainStat" type="Sprite" parent="."]
+position = Vector2( 927, 60 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 3 )

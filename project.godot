@@ -18,6 +18,11 @@ config/icon="res://icon.png"
 
 GameManager="*res://Scripts/GameSystem/GameManager.gd"
 
+[display]
+
+window/size/height=720
+window/stretch/mode="2d"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

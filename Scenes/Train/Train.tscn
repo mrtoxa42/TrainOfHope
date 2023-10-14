@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Assets/Train/TrainColour.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Train/Train.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Train/Train.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Enemy/EnemySpawners/EnemySpawner1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Train/Turrets/Turret1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Train/TrainVagon.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Train/TrainWheel.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Train/TrainWheelLine.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Extras/Nothing.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/JetBrainsMono-Bold.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 45, 40 )
+extents = Vector2( 135.5, 60.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 309, 162.5 )
@@ -13,24 +18,202 @@ extents = Vector2( 309, 162.5 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 98.5, 29.5 )
 
+[sub_resource type="Animation" id=4]
+resource_name = "Move"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wheels/Wheel3:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 359.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wheels/Wheel2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 359.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Wheels/Wheel1:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 359.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Wheels/TrainWheelLine:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.7, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 19, 127 ), Vector2( 13, 110 ), Vector2( -6, 109 ), Vector2( -16, 121 ), Vector2( -16, 138 ), Vector2( -7, 147 ), Vector2( 19, 141 ), Vector2( 19, 127 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Wheels/TrainWheelLine2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -19, 87 ), Vector2( -15, 95 ), Vector2( -19, 108 ), Vector2( -41, 109 ), Vector2( -50, 94 ), Vector2( -55, 84 ), Vector2( -51, 70 ), Vector2( -34, 62 ), Vector2( -12, 75 ), Vector2( -16, 87 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Wheels/TrainWheelLine3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 59, 87 ), Vector2( 70, 83 ), Vector2( 80, 70 ), Vector2( 62, 65 ), Vector2( 43, 69 ), Vector2( 34, 81 ), Vector2( 35, 98 ), Vector2( 48, 109 ), Vector2( 55, 114 ), Vector2( 71, 102 ), Vector2( 61, 88 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Area"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.1, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.294118 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.294118 ), Color( 1, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CanvasLayer/Arealabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1.1, 1.4, 1.7, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 22
+font_data = ExtResource( 8 )
+
 [node name="Train" type="KinematicBody2D" groups=["Train"]]
 script = ExtResource( 2 )
 
-[node name="Train" type="Sprite" parent="."]
-position = Vector2( -2, -36 )
-rotation = -0.00125192
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 1.5, 1.5 )
+
+[node name="ExtrasVagon" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="ExtrasVagon"]
+position = Vector2( -185, 6 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2, -7 )
+visible = false
+position = Vector2( -15.5, -13.5 )
 shape = SubResource( 1 )
+
+[node name="Wheels" type="Node2D" parent="."]
+
+[node name="Nothing" type="Sprite" parent="Wheels"]
+modulate = Color( 0.509804, 0.498039, 0.498039, 1 )
+position = Vector2( -71, 89 )
+scale = Vector2( 0.73975, 0.244875 )
+texture = ExtResource( 7 )
+
+[node name="Nothing2" type="Sprite" parent="Wheels"]
+modulate = Color( 0.509804, 0.498039, 0.498039, 1 )
+position = Vector2( 17, 90 )
+scale = Vector2( 0.73975, 0.244875 )
+texture = ExtResource( 7 )
+
+[node name="Wheel3" type="Sprite" parent="Wheels"]
+position = Vector2( -115, 89 )
+rotation = 1.25315
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 5 )
+
+[node name="Wheel2" type="Sprite" parent="Wheels"]
+position = Vector2( -28, 89 )
+rotation = 1.25315
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 5 )
+
+[node name="Wheel1" type="Sprite" parent="Wheels"]
+position = Vector2( 58, 89 )
+rotation = 1.25315
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 5 )
+
+[node name="TrainWheelLine" type="Sprite" parent="Wheels"]
+position = Vector2( 13, 110 )
+scale = Vector2( 0.042, 0.042 )
+texture = ExtResource( 6 )
+offset = Vector2( -2666.67, -952.381 )
+
+[node name="TrainWheelLine2" type="Sprite" parent="Wheels"]
+position = Vector2( -19, 108 )
+scale = Vector2( 0.042, 0.042 )
+texture = ExtResource( 6 )
+
+[node name="TrainWheelLine3" type="Sprite" parent="Wheels"]
+position = Vector2( 80, 70 )
+scale = Vector2( 0.042, 0.042 )
+texture = ExtResource( 6 )
+
+[node name="WheelsLine" type="Node2D" parent="."]
 
 [node name="Detected" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detected"]
-position = Vector2( -1, -37.5 )
+position = Vector2( -36, -18.5 )
 shape = SubResource( 2 )
 
 [node name="StartStop" type="Timer" parent="."]
@@ -39,22 +222,40 @@ one_shot = true
 [node name="TrainArea" type="Area2D" parent="." groups=["Train"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainArea"]
+visible = false
 position = Vector2( -0.5, 0.5 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Move"
+anims/Move = SubResource( 4 )
 
-[node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
-position = Vector2( -147, 260 )
+[node name="Turrets" type="Node2D" parent="."]
 
-[node name="EnemySpawner2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 409, 233 )
+[node name="Turret2" parent="Turrets" instance=ExtResource( 3 )]
+position = Vector2( 35, -18 )
 
-[node name="EnemySpawner4" parent="." instance=ExtResource( 3 )]
-position = Vector2( -180, -237 )
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 0, 0, 0 )
+position = Vector2( -34.5, -17 )
+scale = Vector2( 10.2656, 5.71875 )
+texture = ExtResource( 7 )
 
-[node name="EnemySpawner3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 422, -244 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2"]
+anims/Area = SubResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Arealabel" type="Label" parent="CanvasLayer"]
+visible = false
+modulate = Color( 0.65098, 0.537255, 0.537255, 1 )
+margin_left = 6.0
+margin_top = 3.0
+margin_right = 243.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 6 )
+text = "Trenin hareket etmesi için alana girin"
 
 [connection signal="area_entered" from="Detected" to="." method="_on_Detected_area_entered"]
 [connection signal="area_exited" from="Detected" to="." method="_on_Detected_area_exited"]

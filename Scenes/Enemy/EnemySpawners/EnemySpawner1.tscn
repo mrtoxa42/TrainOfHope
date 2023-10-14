@@ -1,6 +1,45 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Enemy/EnemySpawners/EnemySpawner1.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Enrivorment/Other/Grave.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Extras/GroveUpAni.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 475, 336 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 475, 0, 475, 336 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 950, 0, 475, 336 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 1425, 0, 475, 336 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 1900, 0, 475, 336 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 2375, 0, 475, 336 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Empty",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": false,
+"name": "GroveUp",
+"speed": 10.0
+} ]
 
 [node name="EnemySpawner1" type="Position2D"]
 script = ExtResource( 1 )
@@ -9,4 +48,17 @@ script = ExtResource( 1 )
 wait_time = 3.0
 autostart = true
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 10, -54 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -2, -27 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 1
+frames = SubResource( 7 )
+animation = "Empty"
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
