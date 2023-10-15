@@ -29,7 +29,6 @@ func _on_Detected_area_exited(area):
 		$Sprite2/AnimationPlayer.play("Area")
 		if move == true:
 			$StartStop.start()
-		
 
 func _on_StartStop_timeout():
 	if playerarea == true:
