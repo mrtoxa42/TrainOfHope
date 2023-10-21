@@ -2,5 +2,7 @@ extends CanvasLayer
 
 
 func _process(delta):
-	$PlayerHpBar.value = GameManager.player.hp
-	$TrainHpBar.value  = GameManager.train.hp
+	if GameManager.player != null:
+		$PlayerHpBar.value = GameManager.player.hp
+	if GameManager.train != null:
+		$TrainHpBar.value  = GameManager.train.hp

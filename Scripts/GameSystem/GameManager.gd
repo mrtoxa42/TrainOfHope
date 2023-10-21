@@ -4,8 +4,8 @@ extends Node
 
 #Kaydedilen değişkenler
 var data = {}
-var gamedata = {}
-var traindata = {}
+var gamedata = {coin = 100}
+var traindata = {turret = 7,vagon = 7}
 var playerdata = {}
 
 #Tutulan sahne değişkenleri
@@ -15,15 +15,16 @@ var joystick
 
 
 #Ana Değişkenler
-var gamestarted 
+var gamestarted = false
+var levelin = false
+var selflevel
+var nowlevel = 1
 
 
 
 # Oyun içi değişkenler
 var playerhp 
 var trainhp
-
-
 
 
 var trainboundary

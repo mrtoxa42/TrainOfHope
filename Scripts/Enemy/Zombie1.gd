@@ -9,6 +9,8 @@ var playerarea = false
 var hp = 3
 var death = false
 var damaged = false
+
+var coin = preload("res://Scenes/Extras/Coin.tscn")
 func _process(delta):
 	if GameManager.train != null and GameManager.train != null and trainarea == false and playerarea == false and  death == false and damaged == false:
 		velocity  = Vector2(GameManager.train.global_position - global_position).normalized()
@@ -82,9 +84,19 @@ func Death():
 		GameManager.currentenemy = null
 	death = true
 	$AnimationPlayer.play("Death")
+	GameManager.selflevel.discount_enemy()
 	$CollisionShape2D.queue_free()
 	$DetectedArea.queue_free()
 	$HpBar.hide()
+
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var r = rng.randi_range(0,3)
+	if r == 1:
+		var Coin = coin.instance()
+		get_tree().get_root().add_child(Coin)
+		Coin.global_position = global_position
+
 func _on_BigDetectedArea_area_entered(area):
 	if area.is_in_group("Train"):
 #		detectedtrain = true

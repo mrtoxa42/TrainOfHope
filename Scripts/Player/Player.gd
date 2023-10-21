@@ -11,6 +11,9 @@ func _ready():
 	GameManager.trainboundary = $TrainBoundary.global_position
 func _process(delta):
 #	velocity = get_node("GUI/Joystick").get_velo()
+
+
+	$GUI/CurrentCointLabel.text = "COIN: " + str(GameManager.gamedata.coin)
 	if attacked == false:
 		move_and_slide(velocity * speed)
 	GameManager.trainboundary = $TrainBoundary.global_position
@@ -84,3 +87,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_AnimationPlayer2_animation_finished(anim_name):
 	if anim_name == "TakeDamage":
 		damaged = false
+
+
+func plus_coin():
+	$GUI/AnimationPlayer.play("PlusCoin")
