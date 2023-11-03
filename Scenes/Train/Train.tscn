@@ -178,10 +178,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 1.1, 1.4, 1.7, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.6, 1.1, 1.4, 1.7, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ true, false, true, true, false, true, false ]
+"values": [ false, true, false, true, true, false, true, false ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:visible")
@@ -190,10 +190,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false, true, false ]
 }
 
 [sub_resource type="DynamicFont" id=6]
@@ -398,6 +398,7 @@ position = Vector2( -451, -18 )
 position = Vector2( -536, -18 )
 
 [node name="MoveAreaSprite" type="Sprite" parent="."]
+visible = false
 modulate = Color( 1, 0, 0, 0 )
 position = Vector2( 25.0001, -14 )
 scale = Vector2( 8, 5.3125 )
@@ -409,6 +410,7 @@ anims/Area = SubResource( 5 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Arealabel" type="Label" parent="CanvasLayer"]
+visible = false
 modulate = Color( 0.65098, 0.537255, 0.537255, 1 )
 margin_left = 6.0
 margin_top = 3.0

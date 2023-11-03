@@ -1,11 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Assets/Characther/Items/Sword1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Player/Items/Sword1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/GUI/StatGUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Characther/BasicCharacther.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Player/BasicCharacther.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/JetBrainsMono-Bold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Fonts/RussoOne-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/Player/Items/Box.png" type="Texture" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Player/Items/Bow.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=11]
 size = 24
@@ -21,10 +24,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PlusCoin:rect_position")
@@ -33,7 +36,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0.1, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 841, 81 ), Vector2( 841, 25 ) ]
@@ -42,8 +45,24 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 41.5, 96.75 )
 
+[sub_resource type="Animation" id=14]
+resource_name = "AttackBow"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2D/Hip/Chest/Forearmr:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32.1521, -32.3582 ), Vector2( 9.28028, -30.8235 ) ]
+}
+
 [sub_resource type="Animation" id=6]
-resource_name = "Attack"
+resource_name = "AttackSword"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton2D/Hip/Chest/Forearml:rotation_degrees")
@@ -1064,13 +1083,14 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 73.3501, 522.148 )
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 43.9272, 10 )
 
 [sub_resource type="DynamicFont" id=9]
 font_data = ExtResource( 5 )
 
 [node name="Player" type="KinematicBody2D"]
+modulate = Color( 1, 0.00784314, 0.00784314, 1 )
 position = Vector2( 30, -19 )
 collision_layer = 3
 collision_mask = 2
@@ -1078,12 +1098,15 @@ script = ExtResource( 3 )
 
 [node name="StatGUI" parent="." instance=ExtResource( 2 )]
 
+[node name="MobilControl" type="CanvasLayer" parent="."]
+
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 1, 0 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
 limit_left = 0
 limit_top = -400
+limit_bottom = 1100
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -1096,6 +1119,7 @@ custom_fonts/font = SubResource( 11 )
 text = "COIN: 200"
 
 [node name="PlusCoin" type="Label" parent="GUI"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 841.0
 margin_top = 81.0
 margin_right = 894.0
@@ -1232,7 +1256,8 @@ bones = [ "Hip", PoolRealArray( 0, 0, 0, 0 ), "Hip/Chest", PoolRealArray( 0, 0, 
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-anims/Attack = SubResource( 6 )
+anims/AttackBow = SubResource( 14 )
+anims/AttackSword = SubResource( 6 )
 anims/Idle = SubResource( 4 )
 anims/RunL = SubResource( 5 )
 anims/RunR = SubResource( 3 )
@@ -1279,19 +1304,28 @@ rotation = 0.764709
 rest = Transform2D( 0.721584, 0.692327, -0.692327, 0.721584, -1, 46 )
 default_length = 40.0
 
-[node name="Sprite" type="Sprite" parent="Skeleton2D/Hip/Chest/Forearml/HandR"]
-position = Vector2( 85.3739, -209.323 )
-rotation = 1.4604
+[node name="Sword" type="Area2D" parent="Skeleton2D/Hip/Chest/Forearml/HandR" groups=["Sword"]]
+
+[node name="Sprite" type="Sprite" parent="Skeleton2D/Hip/Chest/Forearml/HandR/Sword"]
+position = Vector2( 86.0758, 4.2998 )
+rotation = 1.67635
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
-offset = Vector2( 2019.03, 211.011 )
 
-[node name="SwordArea" type="Area2D" parent="Skeleton2D/Hip/Chest/Forearml/HandR/Sprite"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Chest/Forearml/HandR/Sword"]
+position = Vector2( 86.8519, 3.6692 )
+rotation = 0.10946
+shape = SubResource( 13 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Chest/Forearml/HandR/Sprite/SwordArea"]
-position = Vector2( 2024.81, 284 )
-rotation = 0.0140062
-shape = SubResource( 7 )
+[node name="Bow" type="Sprite" parent="Skeleton2D/Hip/Chest/Forearml/HandR"]
+position = Vector2( 40.77, 2.45903 )
+texture = ExtResource( 7 )
+
+[node name="Arrow" type="Sprite" parent="Skeleton2D/Hip/Chest/Forearml/HandR/Bow"]
+visible = false
+position = Vector2( 3.44406, 1.06696 )
+rotation = 1.5708
+texture = ExtResource( 9 )
 
 [node name="FootR" type="Bone2D" parent="Skeleton2D/Hip"]
 position = Vector2( 20.6498, 4.30125 )
@@ -1329,11 +1363,8 @@ rest = Transform2D( 0.960175, -0.279399, 0.279399, 0.960175, 9.90295, 32.5259 )
 polygon = PoolVector2Array( -28, -39, 9, -39, 9, 7, -26, 7 )
 
 [node name="TakeDamageAni" type="Node2D" parent="."]
-position = Vector2( 0, -39 )
 
 [node name="TakeDamageLabel" type="Label" parent="TakeDamageAni"]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 0.4, 0, 0, 1 )
 margin_left = -64.0
 margin_top = -9.0
@@ -1342,5 +1373,20 @@ margin_bottom = 13.0
 custom_fonts/font = SubResource( 9 )
 text = "-1"
 
+[node name="Bow" type="Node2D" parent="."]
+
+[node name="BowTimer" type="Timer" parent="Bow"]
+wait_time = 0.08
+one_shot = true
+
+[node name="BowScreenTouch" type="TouchScreenButton" parent="Bow"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -1295, -745 )
+scale = Vector2( 38.7344, 28.5469 )
+normal = ExtResource( 8 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_AnimationPlayer2_animation_finished"]
+[connection signal="timeout" from="Bow/BowTimer" to="." method="_on_BowTimer_timeout"]
+[connection signal="pressed" from="Bow/BowScreenTouch" to="." method="_on_BowScreenTouch_pressed"]
+[connection signal="released" from="Bow/BowScreenTouch" to="." method="_on_BowScreenTouch_released"]

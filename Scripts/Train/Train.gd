@@ -7,7 +7,7 @@ var velocity = Vector2(1,0)
 var playerarea = false
 var move = false
 var hp = 100
-
+var station = false
 
 
 var turrets = {}
@@ -21,7 +21,8 @@ func _ready():
 	CurrentTurret()
 
 func _process(delta):
-	if move == true and GameManager.gamestarted == true:
+	if move == true and GameManager.wavebreak== false and station == false and GameManager.gamestarted == true:
+		$AnimationPlayer.play("Move")
 		move_and_slide(velocity * speed)
 
 func CurrentVagon():
@@ -112,13 +113,21 @@ func _on_Detected_area_entered(area):
 	if area.is_in_group("Player"):
 		playerarea = true
 		
-		if move == false:
+		if move == false and station == false:
 			$StartStop.start()
+
+	if area.is_in_group("Station"):
+		station = true
+		if GameManager.enemycounter <= 0:
+			GameManager.selflevel.break_wave()
+			GameManager.player.break_wave()
+		$AnimationPlayer.stop()
 
 func _on_Detected_area_exited(area):
 	if area.is_in_group("Player"):
 		playerarea = false
-		$MoveAreaSprite/AnimationPlayer.play("Area")
+		if station == false:
+			$MoveAreaSprite/AnimationPlayer.play("Area")
 		if move == true:
 			$StartStop.start()
 
@@ -137,3 +146,5 @@ func take_damage():
 		queue_free()
 func camera_on():
 	$Camera2D.current = true
+
+

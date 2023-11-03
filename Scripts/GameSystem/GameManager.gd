@@ -12,7 +12,8 @@ var playerdata = {}
 var train
 var player
 var joystick 
-
+var deathdealer 
+var bowcross
 
 #Ana Değişkenler
 var gamestarted = false
@@ -26,6 +27,9 @@ var nowlevel = 1
 var playerhp 
 var trainhp
 
+var enemycounter
+
+var wavebreak = false
 
 var trainboundary
 var currentenemy

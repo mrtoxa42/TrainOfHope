@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BasicCharacther.png-18156c7e1ad1127e1b5bb98119401ad1.stex"
+path="res://.import/Bow.png-19eabfd27d0b129950e046f0046fe8cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characther/BasicCharacther.png"
-dest_files=[ "res://.import/BasicCharacther.png-18156c7e1ad1127e1b5bb98119401ad1.stex" ]
+source_file="res://Assets/Player/Items/Bow.png"
+dest_files=[ "res://.import/Bow.png-19eabfd27d0b129950e046f0046fe8cb.stex" ]
 
 [params]
 

@@ -12,6 +12,11 @@ var damaged = false
 
 var coin = preload("res://Scenes/Extras/Coin.tscn")
 func _process(delta):
+
+	if GameManager.wavebreak == true:
+		queue_free()
+
+
 	if GameManager.train != null and GameManager.train != null and trainarea == false and playerarea == false and  death == false and damaged == false:
 		velocity  = Vector2(GameManager.train.global_position - global_position).normalized()
 		if global_position.x < GameManager.train.global_position.x:
@@ -41,9 +46,11 @@ func _on_DetectedArea_area_entered(area):
 	if area.is_in_group("Bullet"):
 		take_damage()
 		
-	if area.name == "SwordArea":
+	if area.is_in_group("Sword"):
 		if GameManager.player.attacked == true:
 			take_damage()
+	if area.is_in_group("Arrow"):
+		take_damage()
 func _on_DetectedArea_area_exited(area):
 	if area.is_in_group("Train"):
 		trainarea = false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Armo1.png-8c6101edcc7c8890329028cbef1b1c96.stex"
+path="res://.import/TurretHead1Death.png-101c08d9f07b5204119ee82bc7de066a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characther/Armo1.png"
-dest_files=[ "res://.import/Armo1.png-8c6101edcc7c8890329028cbef1b1c96.stex" ]
+source_file="res://Assets/Train/TurretHead1Death.png"
+dest_files=[ "res://.import/TurretHead1Death.png-101c08d9f07b5204119ee82bc7de066a.stex" ]
 
 [params]
 
