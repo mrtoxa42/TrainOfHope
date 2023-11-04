@@ -3,7 +3,7 @@ extends KinematicBody2D
 var veloctiy = Vector2(0,0)
 var bowpos = Vector2(0,0)
 var entry = true
-var speed = 5600
+var speed = 5000
 var powerbow = 0
 func _ready():
 #	var tween = create_tween()

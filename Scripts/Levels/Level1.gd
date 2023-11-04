@@ -3,7 +3,7 @@ extends Node2D
 var enemycounter = 3
 var wave = 1
 
-var bowcross = preload("res://Scenes/Player/Items/BowCross.tscn")
+#var bowcross = preload("res://Scenes/Player/Items/BowCross.tscn")
 var deathdealer = preload("res://Scenes/NPC's/DeathDealer.tscn")
 
 func _ready():
@@ -53,8 +53,8 @@ func discount_enemy():
 
 
 func game_started():
-	var BowCross = bowcross.instance()
-	get_tree().get_root().add_child(BowCross)
+#	var BowCross = bowcross.instance()
+#	get_tree().get_root().add_child(BowCross)
 	GameManager.gamestarted = true
 	wave1()
 	

@@ -48,12 +48,14 @@ func get_velo():
 func _on_TouchButton_pressed():
 	if GameManager.player != null:
 		touched = true
+#		GameManager.bowcross.pos_def()
 		modulate.a = 1
 
 
 
 
 func _on_TouchButton_released():
+#	GameManager.bowcross.pos_def()
 	touched = false
 	$BigCircle/SmallCircle.position = Vector2.ZERO
 	modulate.a = 0.5

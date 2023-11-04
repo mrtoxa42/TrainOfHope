@@ -50,7 +50,14 @@ func _on_DetectedArea_area_entered(area):
 		if GameManager.player.attacked == true:
 			take_damage()
 	if area.is_in_group("Arrow"):
-		take_damage()
+		if GameManager.player.bowpower < 40:
+			take_damage()
+		elif GameManager.player.bowpower < 75:
+			hp-=1
+			take_damage()
+		elif GameManager.player.bowpower < 101:
+			hp-=2
+			take_damage()
 func _on_DetectedArea_area_exited(area):
 	if area.is_in_group("Train"):
 		trainarea = false
