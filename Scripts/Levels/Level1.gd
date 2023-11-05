@@ -11,7 +11,7 @@ func _ready():
 	GameManager.selflevel = self
 	GameManager.nowlevel = 1
 	GameManager.levelin = true
-
+	
 
 func _process(delta):
 	GameManager.enemycounter = enemycounter

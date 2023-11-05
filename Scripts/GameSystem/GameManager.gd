@@ -26,6 +26,7 @@ var nowlevel = 1
 # Oyun içi değişkenler
 var playerhp 
 var trainhp
+var relasedjoystick = Vector2.ZERO
 
 var enemycounter
 
